@@ -1,12 +1,8 @@
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS gamescore;
 
-CREATE TABLE tasks (
+CREATE TABLE gamescore (
   id SERIAL,
-  description TEXT
+  username varchar(50),
+  score TIME
 );
 
-INSERT INTO tasks(description) VALUES('Do the dishes');
-INSERT INTO tasks(description) VALUES('Walk the dog');
-INSERT INTO tasks(description) VALUES('Sweep the floor');
-INSERT INTO tasks(description) VALUES('Do your homework');
-INSERT INTO tasks(description) VALUES('Beat Elden Ring');
