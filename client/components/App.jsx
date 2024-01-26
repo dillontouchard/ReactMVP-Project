@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <>
-      <canvas id="phaser-container"></canvas>
+      <div id="phaser-container"></div>
     </>
   );
 };
