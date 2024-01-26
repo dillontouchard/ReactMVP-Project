@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as Phaser from "phaser";
 
 const App = () => {
+
   useEffect(() => {
+    // Fetch data from the server when the component mounts
+    fetchData();
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
     // Phaser initialization code
     const config = {
       type: Phaser.AUTO,
-      width: 800,
-      height: 600,
+      width: windowWidth,
+      height: windowHeight,
       scene: {
         preload: preload,
         create: create,
@@ -22,6 +28,9 @@ const App = () => {
     }
 
     function create() {
+      // Access the fetched data here, for example:
+      
+
       // Phaser create code
     }
 
@@ -33,12 +42,27 @@ const App = () => {
     return () => {
       game.destroy(true);
     };
-  }, []); // The empty dependency array ensures that this effect runs once, similar to componentDidMount
+  }, []); // Include gameData in the dependency array to rerun the effect when it changes
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/chickenrun");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
-  <>
-    <div id="phaser-container"></div>;
-  </>
-  )
+    <>
+      <canvas id="phaser-container"></canvas>
+    </>
+  );
 };
+
 export default App;

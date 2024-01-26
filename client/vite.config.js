@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import react from "@vitejs/plugin-react-swc";
 
-dotenv.config({ path: "../.env" });
+dotenv.config({ path: "./.env" });
 
 export default {
   plugins: [react()],
@@ -9,6 +9,9 @@ export default {
     proxy: {
       "/api": `http://localhost:${process.env.PORT}`,
     },
+    watch: {
+        usePolling: true
+    }
   },
-  cacheDir: "../node_modules/.vite",
+  cacheDir: "./node_modules/.vite",
 };

@@ -1,13 +1,14 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config({ path: "./.env" });
 
-const { PORT, VITE_DATABASE_URL } = process.env;
+const { PORT, DATABASE_URL } = process.env;
 
 const client = new pg.Client({
-  connectionString: VITE_DATABASE_URL,
+  connectionString: DATABASE_URL,
 });
 // import { Pool } from "pg";
 
@@ -18,16 +19,18 @@ const client = new pg.Client({
 //   user: "autumn",
 // });
 
-console.log("DATABASE_URL:", VITE_DATABASE_URL);
+console.log("DATABASE_URL:", DATABASE_URL);
 await client.connect();
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.static('./client'))
 
 app.use(express.json());
 
-app.get("/api/gamescore", (req, res) => {
+app.get("/api/chickenrun", (req, res) => {
   client.query("SELECT * FROM gamescore").then((result) => {
     res.send(result.rows);
   });
