@@ -3,7 +3,7 @@ import pg from "pg";
 import dotenv from "dotenv";
 import cors from "cors";
 
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "../.env" });
 
 const { PORT, DATABASE_URL } = process.env;
 
@@ -15,8 +15,8 @@ const client = new pg.Client({
 // const pool = new Pool({
 //   host: "localhost",
 //   port: 5432,
-//   database: "postgres",
-//   user: "autumn",
+//   database: "chickenrun",
+//   user: "dillon",
 // });
 
 console.log("DATABASE_URL:", DATABASE_URL);
@@ -26,7 +26,7 @@ const app = express();
 
 app.use(cors())
 
-app.use(express.static('./client'))
+// app.use(express.static('./client'))
 
 app.use(express.json());
 

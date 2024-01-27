@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import react from "@vitejs/plugin-react-swc";
 
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "../.env" });
 
 export default {
   plugins: [react()],
